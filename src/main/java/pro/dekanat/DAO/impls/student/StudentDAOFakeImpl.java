@@ -6,6 +6,7 @@ import pro.dekanat.DAO.interfaces.IStudentDAO;
 import pro.dekanat.model.Group;
 import pro.dekanat.model.Student;
 import pro.dekanat.service.impls.GroupServiceImpl;
+import pro.dekanat.storage.DataStorage;
 
 import javax.annotation.PostConstruct;
 import java.sql.SQLException;
@@ -23,34 +24,25 @@ public class StudentDAOFakeImpl implements IStudentDAO{
    private static List<Group> groups= new ArrayList<>();
 
 
-
-    @Autowired
+   @Autowired
     GroupServiceImpl groupService;
 
     @PostConstruct
     void init() throws SQLException {
         groups = groupService.getAll();
-        list.add(new Student(1,"Stepan","Ivanov", new Group(1,"PZ","PZ",1)));
-        list.add(new Student(2,"Vasiliy","Petrov",  groupService.read(2)));
-    }
-/*
 
-    private  List<Student> lis = Arrays.asList(new Student(1,"l","l"
-            , groupService.read(0)));
 
-    static {
 
-        list.add(new Student(1,"Ivan","Ivanov", new Group(1,"PZ","PZ",1)));
-        list.add(new Student(2,"Petro","Petrov",  null )  );
-        list.add(new Student(2,"Sidor","Sidorov", null));
-
+        list.add(new Student(2,"Petro","Petrov",  groupService.read(2)));
+        list.add(new Student(3,"Sidor","Sidorov", groupService.read(2)));
+        list.add(new Student(4,"Pavel","Psvlov",  groupService.read(1)));
+        list.add(new Student(6,"Vasiliy","Petrov",  groups.get(2)));
     }
 
+    @Autowired
+    DataStorage storage;
 
-    private static List<Group> getGroups(){
-        return groupService.getAll();
-    }
-*/
+
 
     @Override
     public void createStudent(Student student) {
@@ -59,8 +51,10 @@ public class StudentDAOFakeImpl implements IStudentDAO{
 
     @Override
     public Student read(int studentId) {
-        return
-                list.get(0);
+
+       return storage.getStudents().stream()
+               .filter(st->st.getId()==studentId)
+               .findFirst().get();
     }
 
     @Override
@@ -69,17 +63,23 @@ public class StudentDAOFakeImpl implements IStudentDAO{
     }
 
     @Override
-    public void delete(int studentId) {
-
-    }
+    public Student delete(int studentId) {
+        Student student = list.stream()
+                .filter(st->st.getId()==studentId)
+                .findFirst().get();
+        int index = list.indexOf(student);
+        System.out.println("---------  " + index + "---------------");
+        list.remove(index);
+        return student;
+     }
 
     @Override
-    public List<Student> getAll() throws SQLException {
+    public List<Student> getAll()  {
 
-        list.add(new Student(1,"Ivan","Ivanov", new Group(1,"PZ","PZ",1)));
+/*        list.add(new Student(1,"Ivan","Ivanov", new Group(1,"PZ","PZ",1)));
         list.add(new Student(2,"Petro","Petrov",  groupService.read(2)));
         list.add(new Student(2,"Sidor","Sidorov", groupService.read(2)));
         list.add(new Student(5,"Pavel","Psvlov",  groupService.read(1)));
-        return list;
+       */ return list;
     }
 }
