@@ -18,7 +18,7 @@ public class GroupController {
     GroupServiceImpl groupService;
 
     @RequestMapping("/api/group")
-    public Group getAllGroupss() throws SQLException {
+    public Group getGroup() throws SQLException {
         return groupService.read(1);
     }
 }
