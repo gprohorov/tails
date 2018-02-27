@@ -20,7 +20,7 @@ app.controller("AppCtrl", function($scope, $http){
         console.log(response);
     });
 
-    this.del = function del(id) {
+    this.delstud = function del(id) {
         $http.get('/api/student/del?id='+id).then(function (response){
             //  $http.get('http://localhost:8080/api/students').then(function (response){
             // $scope.students=response.data;
@@ -28,6 +28,13 @@ app.controller("AppCtrl", function($scope, $http){
             window.location.reload();
         });
     }
+
+    $scope.groups = [];
+    $http.get('/api/groups').then(function (response){
+        //  $http.get('http://localhost:8080/api/students').then(function (response){
+        $scope.groups=response.data;
+        console.log(response);
+    });
 
 
 

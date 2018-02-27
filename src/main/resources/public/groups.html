@@ -19,21 +19,19 @@
                         <tr>
 
                             <th>id</th>
-                            <th>firstName</th>
-                            <th>lastName</th>
-                            <th>group</th>
+                            <th>Abreviation</th>
+                            <th>Name</th>
                             <th>actions</th>
 
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr ng-repeat = "item in students">
+                        <tr ng-repeat = "item in groups">
                             <td>{{item.id}}</td>
-                            <td>{{item.firstName}}</td>
-                            <td>{{item.lastName}}</td>
-                            <td>{{item.group.abr}}</td>
-                            <td><button ng-click="ctrl.delstud(item.id)">DEL</button></td>
+                            <td>{{item.abr}}</td>
+                            <td>{{item.name}}</td>
+                            <td><button ng-click="ctrl.del(item.id)">DEL</button></td>
 
                         </tr>
 
