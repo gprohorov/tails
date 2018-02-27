@@ -7,7 +7,7 @@
 
 </head>
 <body ng-app = "tails">
-<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl" >
+<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" >
     <div class="row">
         <div class="col-md12">
             <div class="panel panel-default">
@@ -22,6 +22,7 @@
                             <th>firstName</th>
                             <th>lastName</th>
                             <th>group</th>
+                            <th>actions</th>
 
                         </tr>
                         </thead>
@@ -32,7 +33,7 @@
                             <td>{{item.firstName}}</td>
                             <td>{{item.lastName}}</td>
                             <td>{{item.group.abr}}</td>
-
+                            <td><button ng-click="ctrl.del(item.id)">DEL</button></td>
 
                         </tr>
 
