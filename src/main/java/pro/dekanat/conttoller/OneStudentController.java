@@ -2,6 +2,7 @@ package pro.dekanat.conttoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.dekanat.model.Student;
 import pro.dekanat.service.impls.StudentServiceImpl;
@@ -17,11 +18,14 @@ public class OneStudentController {
     @Autowired
     StudentServiceImpl studentService;
 
-    @RequestMapping("/api//student")
+    @RequestMapping("/api/student")
     public Student getOneStudent() throws SQLException {
         return studentService.read(1);
-
-
     }
 
-           }
+    @RequestMapping("/api/student/del")
+    public Student delOneStudent(@RequestParam("id") int id) throws SQLException {
+        return studentService.delete(id);
+    }
+
+}

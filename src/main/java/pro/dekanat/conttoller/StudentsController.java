@@ -18,7 +18,7 @@ public class StudentsController {
     @Autowired
     StudentServiceImpl studentService;
 
-    @RequestMapping("/api//students")
+    @RequestMapping("/api/students")
     public List<Student> getAllStudents() throws SQLException {
         return studentService.getAll();
     }
