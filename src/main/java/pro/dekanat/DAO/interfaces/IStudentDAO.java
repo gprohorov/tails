@@ -15,7 +15,7 @@ public interface IStudentDAO {
     public void createStudent(Student student);
     public Student read(int studentId);
     public  void update(Student student);
-    public  void delete(int studentId);
+    public  Student delete(int studentId);
     public List<Student> getAll() throws SQLException;
 
 
