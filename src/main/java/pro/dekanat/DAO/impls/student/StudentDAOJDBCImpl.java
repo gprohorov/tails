@@ -44,7 +44,8 @@ public class StudentDAOJDBCImpl implements IStudentDAO{
     }
 
     @Override
-    public void delete(int studentId) {
+    public Student delete(int studentId) {
+        return null;
 
     }
 
