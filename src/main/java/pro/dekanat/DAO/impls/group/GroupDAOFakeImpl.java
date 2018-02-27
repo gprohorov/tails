@@ -1,10 +1,11 @@
 package pro.dekanat.DAO.impls.group;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pro.dekanat.DAO.interfaces.IGroupDAO;
 import pro.dekanat.model.Group;
+import pro.dekanat.storage.DataStorage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Component
 public class GroupDAOFakeImpl implements IGroupDAO {
+/*
 
     private static List<Group> list = new ArrayList<>();
 
@@ -22,6 +24,12 @@ public class GroupDAOFakeImpl implements IGroupDAO {
         list.add(new Group(3, "MPUIK", "Math Problems and Cybernetics", 3));
 
     }
+*/
+
+    @Autowired
+    DataStorage dataStorage;
+
+
 
     @Override
     public void createStudent(Group Group) {
@@ -30,7 +38,7 @@ public class GroupDAOFakeImpl implements IGroupDAO {
 
     @Override
     public Group read(int groupId) {
-        return list.stream().filter(group -> group.getId() == groupId)
+        return dataStorage.getGroups().stream().filter(group -> group.getId() == groupId)
                 .findFirst().get();
     }
 
@@ -46,6 +54,6 @@ public class GroupDAOFakeImpl implements IGroupDAO {
 
     @Override
     public List<Group> getAll() {
-        return list;
+        return dataStorage.getGroups();
     }
 }
